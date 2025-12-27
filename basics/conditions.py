@@ -1,6 +1,6 @@
 #conditional statements:
 #if condition :
-a = 30
+a = 10
 if a > 20:
     print(" a greater than 20")
     print(f"{a} is grater than 20")
@@ -8,8 +8,8 @@ else:
     print("a is less than 20")
     
 # if else in one line
-output_1 = True if a>40 else False
-print(output_1)
+# output_1 = True if a>40 else False
+# print(output_1)
     
     
 # gender = input("enter your gender:")
