@@ -1,0 +1,7 @@
+thresholds:
+  cpu: 80
+  memory: 80
+  disk: 80
+
+services:
+  - Docker
