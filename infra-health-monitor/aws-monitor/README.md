@@ -40,12 +40,12 @@ aws-infra-health-monitor/
 **************
 
 ## Configuration (config.yaml)
-
+```text
 thresholds:
   cpu: 80
   memory: 80
   disk: 80
-
+```
 **************
 
 ## How It Works
@@ -73,12 +73,13 @@ Instance: i-0931f85b4bc81ca44 | Name: prod-web-01
 **************
 
 ## Alert Logic
-Condition	Status
-Metric missing	NO DATA
-Metric below threshold	OK
-Metric above threshold	ALERT
-Instance stopped	SKIPPED
-
+```text
+* Condition	Status
+* Metric missing	NO DATA
+* Metric below threshold	OK
+* Metric above threshold	ALERT
+* Instance stopped	SKIPPED
+```
 **************
 
 ## Design Highlights
