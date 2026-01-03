@@ -1,19 +1,21 @@
-#AWS Infrastructure Health Monitor
+# AWS Infrastructure Health Monitor
 
-##Overview
-**********
+## Overview
+
 AWS Infrastructure Health Monitor is a Python-based monitoring tool that collects and evaluates health metrics for EC2 instances using AWS CloudWatch. It supports CPU, memory, and disk utilization checks, handles stopped instances and missing metrics gracefully, and produces clear per-instance health summaries.
 
 This project demonstrates real-world DevOps and SRE practices including AWS API integration, observability, edge-case handling, and automation-ready design.
 
-##Technologies Used
-******************
+**************
+## Technologies Used
 * Python 3
 * AWS EC2
 * AWS CloudWatch
 * Boto3
 * YAML configuration
 * AWS CloudWatch Agent (for memory & disk metrics)
+
+**************
 
 ## 📂 Project Structure
 
@@ -24,6 +26,7 @@ aws-infra-health-monitor/
 ├── requirements.txt    # Python dependencies
 └── README.md           # Project documentation
 ```
+**************
 
 ## ⚙️ Prerequisites
 * Python 3.9+
@@ -34,11 +37,16 @@ aws-infra-health-monitor/
 * AWS CLI configured or environment variables set
 * CloudWatch Agent installed on EC2 instances (for memory & disk metrics)
 
+**************
+
 ## 🔧 Configuration (config.yaml)
+
 thresholds:
   cpu: 80
   memory: 80
   disk: 80
+
+**************
 
 ## ▶️ How It Works
 
@@ -53,12 +61,16 @@ thresholds:
 * Compares metric values against defined thresholds.
 * Prints a consolidated health report per instance.
 
+**************
+
 ## 📊 Sample Output
 Instance: i-0931f85b4bc81ca44 | Name: prod-web-01
   - AWS/EC2 CPUUtilization: OK (22.34%)
   - CWAgent mem_used_percent: NO DATA
   - CWAgent disk_used_percent: ALERT (91.12%)
 --------------------------------------------------
+
+**************
 
 ## 🚨 Alert Logic
 Condition	Status
@@ -67,6 +79,7 @@ Metric below threshold	OK
 Metric above threshold	ALERT
 Instance stopped	SKIPPED
 
+**************
 
 ## 🧠 Design Highlights
 
@@ -77,6 +90,7 @@ Instance stopped	SKIPPED
 * Configuration-driven thresholds
 * Production-ready error handling
 
+**************
 
 ## 🚀 Future Enhancements
 
