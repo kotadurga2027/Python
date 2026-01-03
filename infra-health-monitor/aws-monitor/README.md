@@ -17,7 +17,7 @@ This project demonstrates real-world DevOps and SRE practices including AWS API 
 
 **************
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 aws-infra-health-monitor/
@@ -28,7 +28,7 @@ aws-infra-health-monitor/
 ```
 **************
 
-## ⚙️ Prerequisites
+## Prerequisites
 * Python 3.9+
 * AWS account with EC2 instances
 * IAM permissions:
@@ -39,7 +39,7 @@ aws-infra-health-monitor/
 
 **************
 
-## 🔧 Configuration (config.yaml)
+## Configuration (config.yaml)
 
 thresholds:
   cpu: 80
@@ -48,7 +48,7 @@ thresholds:
 
 **************
 
-## ▶️ How It Works
+## How It Works
 
 * Discovers all EC2 instances and their states.
 * Builds CloudWatch metric queries for:
@@ -63,7 +63,7 @@ thresholds:
 
 **************
 
-## 📊 Sample Output
+## Sample Output
 Instance: i-0931f85b4bc81ca44 | Name: prod-web-01
   - AWS/EC2 CPUUtilization: OK (22.34%)
   - CWAgent mem_used_percent: NO DATA
@@ -72,7 +72,7 @@ Instance: i-0931f85b4bc81ca44 | Name: prod-web-01
 
 **************
 
-## 🚨 Alert Logic
+## Alert Logic
 Condition	Status
 Metric missing	NO DATA
 Metric below threshold	OK
@@ -81,7 +81,7 @@ Instance stopped	SKIPPED
 
 **************
 
-## 🧠 Design Highlights
+## Design Highlights
 
 * Uses immutable Instance IDs for metric correlation
 * Enriches output with EC2 Name tags
@@ -92,7 +92,7 @@ Instance stopped	SKIPPED
 
 **************
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 * SNS / Email notifications
 * JSON output for integrations
