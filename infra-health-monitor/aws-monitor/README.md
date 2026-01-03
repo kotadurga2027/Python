@@ -1,24 +1,110 @@
-# Python Infrastructure Health Monitor
+AWS Infrastructure Health Monitor
+📌 Overview
 
-A Python-based automation tool to monitor system health on Windows systems.
+AWS Infrastructure Health Monitor is a Python-based monitoring tool that collects and evaluates health metrics for EC2 instances using AWS CloudWatch. It supports CPU, memory, and disk utilization checks, handles stopped instances and missing metrics gracefully, and produces clear per-instance health summaries.
 
-## Features
-- CPU, Memory, Disk monitoring
-- Windows service status checks
-- Config-driven thresholds
-- DevOps-style automation script
+This project demonstrates real-world DevOps and SRE practices including AWS API integration, observability, edge-case handling, and automation-ready design.
 
-## Tech Stack
-- Python
-- psutil
-- Windows / Linux compatible
+🛠️ Technologies Used
 
-## Usage
-```powershell
-python monitor.py
+Python 3
 
-## Design Highlights
-- Config-driven thresholds using YAML
-- OS-level automation using Python
-- Logging and exit codes for automation
-- Designed for CI/CD and scheduled execution
+AWS EC2
+
+AWS CloudWatch
+
+Boto3
+
+YAML configuration
+
+AWS CloudWatch Agent (for memory & disk metrics)
+
+📂 Project Structure
+aws-infra-health-monitor/
+├── monitor.py
+├── config.yaml
+├── requirements.txt
+└── README.md
+
+⚙️ Prerequisites
+
+Python 3.9+
+
+AWS account with EC2 instances
+
+IAM permissions:
+
+ec2:DescribeInstances
+
+cloudwatch:GetMetricData
+
+AWS CLI configured or environment variables set
+
+CloudWatch Agent installed on EC2 instances (for memory & disk metrics)
+
+🔧 Configuration (config.yaml)
+thresholds:
+  cpu: 80
+  memory: 80
+  disk: 80
+
+▶️ How It Works
+
+Discovers all EC2 instances and their states.
+
+Builds CloudWatch metric queries for:
+
+CPU utilization (native EC2 metrics)
+
+Memory and disk usage (CloudWatch Agent metrics)
+
+Fetches metrics for the last 15 minutes in UTC.
+
+Handles edge cases:
+
+Stopped instances
+
+Missing CloudWatch Agent metrics
+
+Compares metric values against defined thresholds.
+
+Prints a consolidated health report per instance.
+
+📊 Sample Output
+Instance: i-0931f85b4bc81ca44 | Name: prod-web-01
+  - AWS/EC2 CPUUtilization: OK (22.34%)
+  - CWAgent mem_used_percent: NO DATA
+  - CWAgent disk_used_percent: ALERT (91.12%)
+--------------------------------------------------
+
+🚨 Alert Logic
+Condition	Status
+Metric missing	NO DATA
+Metric below threshold	OK
+Metric above threshold	ALERT
+Instance stopped	SKIPPED
+🧠 Design Highlights
+
+Uses immutable Instance IDs for metric correlation
+
+Enriches output with EC2 Name tags
+
+Batch CloudWatch metric queries for efficiency
+
+Timezone-aware UTC timestamps
+
+Configuration-driven thresholds
+
+Production-ready error handling
+
+🚀 Future Enhancements
+
+SNS / Email notifications
+
+JSON output for integrations
+
+AWS Lambda deployment
+
+Auto-detection of CloudWatch Agent
+
+Support for Auto Scaling Groups
